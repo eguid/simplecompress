@@ -1167,6 +1167,12 @@ body::after {
   height: 22px;
 }
 
+.product-icon img {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+}
+
 .product-main {
   display: flex;
   flex-direction: column;
@@ -1241,25 +1247,40 @@ body::after {
 }
 
 /* ---------- 12. 下载与安装 ---------- */
-.download-panel {
+.download-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.dl-card {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 36px;
+  flex-direction: column;
+  gap: 14px;
+  padding: 34px 32px 32px;
   border: 1px solid rgba(201, 166, 107, 0.24);
   border-radius: var(--radius-card);
   background: rgba(246, 242, 234, 0.04);
   transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
-.download-panel:hover {
+.dl-card:hover {
   border-color: rgba(201, 166, 107, 0.5);
   background: rgba(246, 242, 234, 0.06);
 }
 
-.download-panel-text {
-  max-width: 560px;
+.dl-badge {
+  position: absolute;
+  top: -11px;
+  left: 32px;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .dl-tag {
@@ -1269,8 +1290,7 @@ body::after {
   color: var(--gold);
 }
 
-.download-panel h3 {
-  margin-top: 12px;
+.dl-card h3 {
   font-family: var(--font-mono);
   font-size: 21px;
   font-weight: 500;
@@ -1278,15 +1298,15 @@ body::after {
   word-break: break-all;
 }
 
-.download-panel p:not(.dl-tag) {
-  margin-top: 12px;
+.dl-desc {
+  flex: 1;
   font-size: 14.5px;
   line-height: 1.8;
   color: rgba(246, 242, 234, 0.66);
 }
 
-.download-panel .btn {
-  flex: none;
+.dl-card .btn {
+  align-self: flex-start;
 }
 
 .steps {
@@ -1621,11 +1641,12 @@ body::after {
     background: transparent;
   }
 
-  .download-panel {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    padding: 26px;
+  .download-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dl-card {
+    padding: 30px 24px 26px;
   }
 
   .steps {

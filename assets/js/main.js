@@ -8,7 +8,7 @@
      留空则保持「即将上线」状态。
      ------------------------------------------------------------------ */
   var PRODUCT_LINKS = {
-    image: '', // 简单看图官网（待补充）
+    image: 'https://eguid.github.io/simplekantu', // 简单看图官网
     tvcast: 'https://simpletvcast.eguid.cc' // 简单电视投屏官网
   };
 
