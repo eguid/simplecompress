@@ -1309,6 +1309,41 @@ body::after {
   align-self: flex-start;
 }
 
+.dl-title {
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+
+.dl-picked {
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+.dl-card.is-active {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px rgba(201, 166, 107, 0.32);
+}
+
+.dl-card.is-active .dl-badge {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.download-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1023px) {
+  .download-grid--three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>下载中心 · 简单压缩（SimpleCompress）</title>
+<meta name="description" content="简单压缩（SimpleCompress）下载中心：可从火绒应用商店、Gitee 或 GitHub 获取 Windows 安装包。">
+<meta name="theme-color" content="#14181b">
+<meta name="robots" content="follow">
+<link rel="canonical" href="https://eguid.github.io/simplecompress/download">
+<link rel="icon" href="../assets/img/app-icon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../assets/img/app-icon-128.png">
+<link rel="stylesheet" href="../assets/css/main.css?v=20261130">
+<script src="../assets/js/main.js?v=20261130" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="简单压缩 首页">
+      <img src="../assets/img/app-icon-128.png" alt="" width="36" height="36" aria-hidden="true">
+      <span class="brand-text"><span>简单压缩</span><em>SimpleCompress</em></span>
+    </a>
+    <div class="header-actions">
+      <a class="btn btn-ghost" href="../index.html">返回首页</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section dark download" id="download">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">DOWNLOAD / 下载中心</p>
+        <h1 class="dl-title">选择你的下载方式</h1>
+        <p class="section-sub">国内用户推荐火绒应用商店或 Gitee 分流，海外用户推荐 GitHub 分流。</p>
+        <p class="dl-picked" id="dlPicked" hidden></p>
+      </header>
+
+      <div class="download-grid download-grid--three" id="dlCards">
+        <article class="dl-card" data-target="hy">
+          <span class="dl-badge" hidden>当前选择</span>
+          <p class="dl-tag">应用商店 · 已上架</p>
+          <h3>火绒应用商店</h3>
+          <p class="dl-desc">简单压缩已上架火绒应用商店，搜索「简单压缩」即可下载安装，后续更新由商店统一完成。</p>
+          <a class="btn btn-gold" data-dl="hy" href="https://www.huorong.cn/appstore" target="_blank" rel="noopener">前往火绒应用商店</a>
+        </article>
+        <article class="dl-card" data-target="gitee">
+          <span class="dl-badge" hidden>当前选择</span>
+          <p class="dl-tag">国内分流 · 推荐</p>
+          <h3>Gitee 下载</h3>
+          <p class="dl-desc">国内访问速度快，Windows 安装包发布在 Gitee Releases，国内网络无需额外配置。</p>
+          <a class="btn btn-gold" data-dl="gitee" href="https://gitee.com/eguid/simplecompress/releases" target="_blank" rel="noopener">前往 Gitee 下载</a>
+        </article>
+        <article class="dl-card" data-target="github">
+          <span class="dl-badge" hidden>当前选择</span>
+          <p class="dl-tag">海外分流</p>
+          <h3>GitHub 下载</h3>
+          <p class="dl-desc">GitHub Releases 为原始发布位置，海外网络访问更稳定，安装包与 Gitee 保持一致。</p>
+          <a class="btn btn-gold" data-dl="github" href="https://github.com/eguid/simplecompress/releases" target="_blank" rel="noopener">前往 GitHub 下载</a>
+        </article>
+      </div>
+
+      <ol class="steps">
+        <li><span>01</span>选择下载渠道</li>
+        <li><span>02</span>按提示完成安装</li>
+        <li><span>03</span>打开「全局配置」按习惯调整</li>
+      </ol>
+
+      <p class="download-note">当前版本 0.8.12 · 安装包下载由 Gitee / GitHub Releases 提供，火绒应用商店中的版本以其上架信息为准。问题反馈：Gitee Issues · 官方 QQ 群 1128442392。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer install-footer">
+  <div class="wrap footer-bottom">
+    <span>© 2026 eguid · 简单压缩（SimpleCompress）</span>
+    <span>版本 0.8.12</span>
+    <a href="../index.html">返回首页 ↑</a>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+
+  var ids = {
+    exe: { label: "简单压缩.exe 安装包", target: "gitee" },
+    hy: { label: "火绒应用商店", target: "hy" },
+    hr: { label: "火绒应用商店", target: "hy" },
+    gitee: { label: "Gitee 下载", target: "gitee" },
+    github: { label: "GitHub 下载", target: "github" }
+  };
+
+  var raw = "";
+  try {
+    raw = (new URLSearchParams(window.location.search).get("id") || "").trim().toLowerCase();
+  } catch (error) {
+    raw = "";
+  }
+
+  var picked = ids[raw] ? raw : "";
+  var target = picked ? ids[picked].target : "";
+  var note = document.getElementById("dlPicked");
+
+  if (note && picked) {
+    note.textContent = "已为你定位：" + ids[picked].label;
+    note.hidden = false;
+  }
+
+  if (target) {
+    Array.prototype.forEach.call(document.querySelectorAll(".dl-card[data-target]"), function (card) {
+      if (card.getAttribute("data-target") !== target) return;
+      card.classList.add("is-active");
+      var badge = card.querySelector(".dl-badge");
+      if (badge) badge.hidden = false;
+    });
+  }
+});
+</script>
+</body>
+</html>
